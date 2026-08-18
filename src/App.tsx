@@ -20,7 +20,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F7F6F3] text-[#171717] font-sans antialiased flex flex-col justify-between selection:bg-[#B08D57] selection:text-white">
+    <div className="min-h-screen bg-[#F7F6F3] text-[#171717] font-sans antialiased flex flex-col justify-between selection:bg-[#00A3E0] selection:text-white">
       <div>
         <Navbar activePage={activePage} setActivePage={setActivePage} />
 

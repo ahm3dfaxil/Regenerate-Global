@@ -59,7 +59,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       <section className="pt-24 pb-16 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F1EFEA] border-b border-[#E4E1DB]">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E4E1DB] text-[#B08D57] text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E4E1DB] text-[#171717] text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm">
             <Layers size={14} /> DEVICE GRADING
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#171717] mb-4">
@@ -94,10 +94,10 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-5">
                     {/* Subtle warm-neutral circular icon container */}
-                    <div className="w-12 h-12 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#B08D57] flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] flex items-center justify-center shrink-0">
                       {getGradeIcon(idx)}
                     </div>
-                    <span className="px-3 py-1 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#B08D57] text-[11px] font-semibold tracking-wide">
+                    <span className="px-3 py-1 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] text-[11px] font-semibold tracking-wide">
                       {item.badge}
                     </span>
                   </div>
@@ -129,7 +129,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       <section className="py-14 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-y border-[#E4E1DB]">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-lg sm:text-xl md:text-2xl font-medium text-[#3A3834] leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl font-medium text-[#171717] leading-relaxed">
             At <strong className="text-[#171717] font-semibold">Regenerate Global</strong>, we employ advanced diagnostic tools to thoroughly test every device’s functionality.
           </p>
         </div>
@@ -143,13 +143,13 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
           {/* Corporate Information Panel */}
           <div className="bg-white p-8 sm:p-12 rounded-3xl border border-[#E4E1DB] shadow-sm relative overflow-hidden">
             {/* Decorative Gold Accent Line */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B08D57] via-[#C5A46D] to-[#B08D57]" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#171717] via-[#171717] to-[#171717]" />
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2.5 rounded-xl bg-[#F1EFEA] text-[#B08D57] border border-[#E4E1DB]">
+              <div className="p-2.5 rounded-xl bg-[#F1EFEA] text-[#171717] border border-[#E4E1DB]">
                 <Search size={20} />
               </div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#B08D57]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#171717]">
                 Inspection Methodology
               </span>
             </div>
@@ -157,7 +157,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#171717] mb-2">
               Our Rigorous Inspection Process
             </h2>
-            <h3 className="text-base sm:text-lg font-medium text-[#B08D57] mb-6">
+            <h3 className="text-base sm:text-lg font-medium text-[#171717] mb-6">
               Thorough checks for condition and performance accuracy.
             </h3>
 
@@ -190,7 +190,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {GRADING_CRITERIA.map((cat) => (
               <div key={cat.title} className="bg-[#F7F6F3] p-6 rounded-2xl border border-[#E4E1DB]">
-                <div className="w-10 h-10 rounded-xl bg-[#F1EFEA] border border-[#E4E1DB] text-[#B08D57] flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-xl bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] flex items-center justify-center mb-4">
                   {getCriteriaIcon(cat.iconName)}
                 </div>
                 <h3 className="text-base font-semibold text-[#171717] mb-3">
@@ -198,8 +198,8 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
                 </h3>
                 <ul className="space-y-2">
                   {cat.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-xs text-[#3A3834] font-medium">
-                      <ChevronRight size={14} className="text-[#B08D57] shrink-0" />
+                    <li key={item} className="flex items-center gap-2 text-xs text-[#171717] font-medium">
+                      <ChevronRight size={14} className="text-[#171717] shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -250,7 +250,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
               renderItem={(item: any) => (
                 <div
                   title={item.title}
-                  className="w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-3xl border border-[#E4E1DB] flex items-center justify-center p-5 shadow-sm hover:shadow-lg hover:border-[#B08D57] transition-all group cursor-pointer"
+                  className="w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-3xl border border-[#E4E1DB] flex items-center justify-center p-5 shadow-sm hover:shadow-lg hover:border-[#171717] transition-all group cursor-pointer"
                 >
                   <img
                     src={item.src}
@@ -269,7 +269,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-t border-[#E4E1DB]">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#B08D57] text-xs font-semibold uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] text-xs font-semibold uppercase mb-4">
             <ShieldCheck size={14} /> Quality Guarantee
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#171717] mb-4">
@@ -282,17 +282,17 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => handleCtaClick('home', 'wholesale')}
-              className="inline-flex items-center gap-2 text-[13px] font-medium text-white bg-[#171717] border border-[#171717] rounded-full px-7 py-3.5 hover:bg-[#3A3834] transition-all shadow-sm cursor-pointer group"
+              className="inline-flex items-center gap-2 text-[13px] font-medium text-white bg-[#171717] border border-[#171717] rounded-full px-7 py-3.5 hover:bg-[#171717] transition-all shadow-sm cursor-pointer group"
             >
               Explore Our Products
-              <span className="text-[#C5A46D] transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="text-[#171717] transition-transform group-hover:translate-x-0.5">→</span>
             </button>
             <button
               onClick={() => handleCtaClick('home', 'contact')}
-              className="inline-flex items-center gap-2 text-[13px] font-medium text-[#171717] bg-white border border-[#D6D1C8] rounded-full px-7 py-3.5 hover:border-[#B08D57] hover:bg-[#171717] hover:text-white transition-all shadow-sm cursor-pointer group"
+              className="inline-flex items-center gap-2 text-[13px] font-medium text-[#171717] bg-white border border-[#D6D1C8] rounded-full px-7 py-3.5 hover:border-[#171717] hover:bg-[#171717] hover:text-white transition-all shadow-sm cursor-pointer group"
             >
               Contact Us
-              <span className="text-[#B08D57] group-hover:text-[#C5A46D] transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="text-[#171717] group-hover:text-[#171717] transition-transform group-hover:translate-x-0.5">→</span>
             </button>
           </div>
         </div>

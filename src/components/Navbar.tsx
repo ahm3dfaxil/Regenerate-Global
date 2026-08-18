@@ -3,18 +3,11 @@ import { Menu, X } from 'lucide-react';
 import type { PageView } from '../types';
 
 const Logo: React.FC = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 256 256"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill="rgb(84, 84, 84)"
-      d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"
-    />
-  </svg>
+  <img
+    src="/logo-transparent.png"
+    alt="Regenerate Global Logo"
+    className="w-8 h-8 object-contain"
+  />
 );
 
 interface NavbarProps {
@@ -95,43 +88,43 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
             <button
               onClick={() => handleNavClick('home')}
               className={`text-[13px] font-medium transition-colors duration-200 ${
-                activePage === 'home' ? 'text-[#171717] font-semibold' : 'text-[#3A3834] hover:text-[#171717]'
+                activePage === 'home' ? 'text-[#171717] font-semibold' : 'text-[#171717] hover:text-[#171717]'
               }`}
             >
               Home
             </button>
             <button
               onClick={() => handleNavClick('home', 'about')}
-              className="text-[13px] font-medium text-[#3A3834] hover:text-[#171717] transition-colors duration-200"
+              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
             >
               About
             </button>
             <button
               onClick={() => handleNavClick('home', 'services')}
-              className="text-[13px] font-medium text-[#3A3834] hover:text-[#171717] transition-colors duration-200"
+              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
             >
               Services
             </button>
             <button
               onClick={() => handleNavClick('home', 'wholesale')}
-              className="text-[13px] font-medium text-[#3A3834] hover:text-[#171717] transition-colors duration-200"
+              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
             >
               Products / Wholesale
             </button>
             <button
               onClick={() => handleNavClick('grading')}
               className={`text-[13px] font-medium transition-colors duration-200 flex items-center gap-1.5 ${
-                activePage === 'grading' ? 'text-[#B08D57] font-semibold' : 'text-[#3A3834] hover:text-[#B08D57]'
+                activePage === 'grading' ? 'text-[#B08D57] font-semibold' : 'text-[#171717] hover:text-[#B08D57]'
               }`}
             >
               Grading
               {activePage === 'grading' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#B08D57]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#171717]" />
               )}
             </button>
             <button
               onClick={() => handleNavClick('home', 'contact')}
-              className="text-[13px] font-medium text-[#3A3834] hover:text-[#171717] transition-colors duration-200"
+              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
             >
               Contact
             </button>
@@ -139,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
 
           <button
             onClick={() => handleNavClick('home', 'contact')}
-            className={`inline-flex items-center gap-1.5 text-[13px] font-medium text-white bg-[#171717] rounded-xl px-5 py-2.5 hover:bg-[#3A3834] transition-all shadow-sm cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 text-[13px] font-medium text-white bg-[#171717] rounded-xl px-5 py-2.5 hover:bg-[#171717] transition-all shadow-sm cursor-pointer ${
               isScrolled ? 'shadow-md' : ''
             }`}
           >
@@ -164,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
           </div>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 text-[#3A3834] hover:text-[#171717] rounded-lg focus:outline-none"
+            className="p-1.5 text-[#171717] hover:text-[#171717] rounded-lg focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -178,43 +171,43 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
           <div className="flex flex-col gap-2">
             <button
               onClick={() => handleNavClick('home')}
-              className="text-left text-sm font-medium text-[#3A3834] hover:text-[#B08D57] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
+              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
             >
               Home
             </button>
             <button
               onClick={() => handleNavClick('home', 'about')}
-              className="text-left text-sm font-medium text-[#3A3834] hover:text-[#B08D57] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
+              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
             >
               About
             </button>
             <button
               onClick={() => handleNavClick('home', 'services')}
-              className="text-left text-sm font-medium text-[#3A3834] hover:text-[#B08D57] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
+              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
             >
               Services
             </button>
             <button
               onClick={() => handleNavClick('home', 'wholesale')}
-              className="text-left text-sm font-medium text-[#3A3834] hover:text-[#B08D57] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
+              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
             >
               Products / Wholesale
             </button>
             <button
               onClick={() => handleNavClick('grading')}
-              className="text-left text-sm font-medium text-[#B08D57] font-semibold px-3 py-2 rounded-lg bg-[#F1EFEA] transition-colors"
+              className="text-left text-sm font-medium text-[#171717] font-semibold px-3 py-2 rounded-lg bg-[#F1EFEA] transition-colors"
             >
               Device Grading
             </button>
             <button
               onClick={() => handleNavClick('home', 'contact')}
-              className="text-left text-sm font-medium text-[#3A3834] hover:text-[#B08D57] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
+              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
             >
               Contact
             </button>
             <button
               onClick={() => handleNavClick('home', 'contact')}
-              className="mt-2 text-center text-sm font-medium text-white bg-[#171717] px-4 py-2.5 rounded-xl hover:bg-[#3A3834] transition-colors"
+              className="mt-2 text-center text-sm font-medium text-white bg-[#171717] px-4 py-2.5 rounded-xl hover:bg-[#171717] transition-colors"
             >
               Get in Touch
             </button>

@@ -2,18 +2,11 @@ import React from 'react';
 import type { PageView } from '../types';
 
 const Logo: React.FC = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 256 256"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill="rgb(84, 84, 84)"
-      d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"
-    />
-  </svg>
+  <img
+    src="/logo-transparent.png"
+    alt="Regenerate Global Logo"
+    className="w-7 h-7 object-contain"
+  />
 );
 
 interface FooterProps {
@@ -60,22 +53,22 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">Corporate</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <button onClick={() => navigateTo('home', 'about')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'about')} className="hover:text-[#171717] transition-colors text-left">
                   About Us
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('home', 'corporate')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'corporate')} className="hover:text-[#171717] transition-colors text-left">
                   Governance & Credentials
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('home', 'approach')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'approach')} className="hover:text-[#171717] transition-colors text-left">
                   Business Methodology
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('home', 'contact')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'contact')} className="hover:text-[#171717] transition-colors text-left">
                   Contact Enquiries
                 </button>
               </li>
@@ -86,22 +79,22 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">Capabilities</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <button onClick={() => navigateTo('home', 'services')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'services')} className="hover:text-[#171717] transition-colors text-left">
                   Technology & IT
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('home', 'services')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'services')} className="hover:text-[#171717] transition-colors text-left">
                   Telecommunications
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('home', 'services')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'services')} className="hover:text-[#171717] transition-colors text-left">
                   Global Procurement
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('grading')} className="hover:text-[#C5A46D] transition-colors text-left text-[#B08D57]">
+                <button onClick={() => navigateTo('grading')} className="hover:text-[#171717] transition-colors text-left text-[#171717]">
                   Device Grading
                 </button>
               </li>
@@ -112,22 +105,22 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">Divisions</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <button onClick={() => navigateTo('home', 'wholesale')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'wholesale')} className="hover:text-[#171717] transition-colors text-left">
                   Hardware & Electronics
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('grading')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('grading')} className="hover:text-[#171717] transition-colors text-left">
                   Refurbished Devices & Grading
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('home', 'ecosystem')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'ecosystem')} className="hover:text-[#171717] transition-colors text-left">
                   Commercial Ecosystem
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('home', 'contact')} className="hover:text-[#C5A46D] transition-colors text-left">
+                <button onClick={() => navigateTo('home', 'contact')} className="hover:text-[#171717] transition-colors text-left">
                   B2B Trade Support
                 </button>
               </li>
@@ -138,9 +131,9 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#858078] gap-4">
           <p>Regenerate Global Limited is registered in England & Wales (Established 2013).</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-[#C5A46D] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#C5A46D] transition-colors">Terms of Business</a>
-            <a href="#" className="hover:text-[#C5A46D] transition-colors">Regulatory Compliance</a>
+            <a href="#" className="hover:text-[#171717] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#171717] transition-colors">Terms of Business</a>
+            <a href="#" className="hover:text-[#171717] transition-colors">Regulatory Compliance</a>
           </div>
         </div>
       </div>

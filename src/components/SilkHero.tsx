@@ -76,7 +76,7 @@ export const SilkHero: React.FC<SilkHeroProps> = ({
             onClick={() => handleCtaClick('home', 'wholesale')}
             className="inline-flex items-center justify-center gap-2.5 text-[13.5px] sm:text-[14px] font-semibold text-white bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 rounded-full px-6 sm:px-8 py-3 sm:py-3.5 hover:shadow-md hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 group cursor-pointer w-full sm:w-auto"
           >
-            Wholesale &amp; Grading
+            Products &amp; Wholesale
             <ArrowRight size={16} className="text-white transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>

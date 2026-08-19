@@ -1,7 +1,7 @@
 import React from 'react';
 import type { PageView } from '../types';
 
-const Logo: React.FC<{ className?: string }> = ({ className = "h-12 sm:h-14 md:h-16 w-auto object-contain" }) => (
+const Logo: React.FC<{ className?: string }> = ({ className = "h-20 sm:h-24 md:h-28 w-auto object-contain" }) => (
   <img
     src="/logo-transparent.png"
     alt="Regenerate Global Logo"
@@ -29,21 +29,21 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
   };
 
   return (
-    <footer className="bg-[#041626] text-[#858078] py-16 px-6 sm:px-12 md:px-20 lg:px-28 border-t border-[#00A3E0]/30 relative overflow-hidden">
+    <footer className="bg-[#041626] text-[#858078] py-12 sm:py-16 px-5 sm:px-12 md:px-20 lg:px-28 border-t border-[#00A3E0]/30 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 pb-12 border-b border-white/10">
+          <div className="col-span-2 lg:col-span-2">
             <button
               onClick={() => navigateTo('home')}
               className="flex items-center cursor-pointer hover:opacity-90 transition-opacity mb-4 text-left focus:outline-none"
               title="Regenerate Global Home"
             >
-              <Logo className="h-12 sm:h-14 md:h-16 w-auto object-contain drop-shadow-md" />
+              <Logo className="h-20 sm:h-24 md:h-28 w-auto object-contain drop-shadow-md" />
             </button>
-            <p className="text-xs leading-relaxed text-white/70 max-w-sm mb-6">
+            <p className="text-xs sm:text-sm leading-relaxed text-white/70 max-w-sm mb-6">
               Connecting technology, business and opportunity globally. A UK incorporated enterprise operating across technology, telecommunications, procurement, and B2B solutions since 2013.
             </p>
-            <p className="text-[11px] text-white/50">
+            <p className="text-[11px] sm:text-xs text-white/50">
               © {new Date().getFullYear()} Regenerate Global Limited. All rights reserved.
             </p>
           </div>
@@ -58,7 +58,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
               </li>
               <li>
                 <button onClick={() => navigateTo('home', 'corporate')} className="text-white/80 hover:text-[#00A3E0] transition-colors text-left">
-                  Governance & Credentials
+                  Governance &amp; Credentials
                 </button>
               </li>
               <li>
@@ -79,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
             <ul className="space-y-2.5 text-xs">
               <li>
                 <button onClick={() => navigateTo('home', 'services')} className="text-white/80 hover:text-[#00A3E0] transition-colors text-left">
-                  Technology & IT
+                  Technology &amp; IT
                 </button>
               </li>
               <li>
@@ -100,17 +100,17 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-[#00A3E0] mb-4">Divisions</h4>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-2.5 text-xs grid grid-cols-2 sm:block gap-2">
               <li>
                 <button onClick={() => navigateTo('home', 'wholesale')} className="text-white/80 hover:text-[#00A3E0] transition-colors text-left">
-                  Hardware & Electronics
+                  Hardware &amp; Electronics
                 </button>
               </li>
               <li>
                 <button onClick={() => navigateTo('grading')} className="text-white/80 hover:text-[#00A3E0] transition-colors text-left">
-                  Refurbished Devices & Grading
+                  Refurbished Devices &amp; Grading
                 </button>
               </li>
               <li>
@@ -127,9 +127,12 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/50 gap-4">
-          <p>Regenerate Global Limited is registered in England & Wales (Established 2013).</p>
-          <div className="flex items-center gap-6">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs text-white/50 gap-4 text-center sm:text-left">
+          <p>
+            Regenerate Global Limited is registered in England &amp; Wales{' '}
+            <span className="inline-block whitespace-nowrap">(Established 2013).</span>
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <a href="#" className="hover:text-[#00A3E0] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[#00A3E0] transition-colors">Terms of Business</a>
             <a href="#" className="hover:text-[#00A3E0] transition-colors">Regulatory Compliance</a>

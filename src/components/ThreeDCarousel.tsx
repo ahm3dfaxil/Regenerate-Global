@@ -55,17 +55,31 @@ const ThreeDCarousel: React.FC<ThreeDCarouselProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const isMobile = useIsMobile();
   const minSwipeDistance = 35;
+  const [isVisible, setIsVisible] = useState(true);
 
-  // Auto-Rotate Timer (Runs reliably, pauses only during active drag/touch)
   useEffect(() => {
-    if (!autoRotate || isDragging || isInteracting || items.length <= 1) return;
+    const el = carouselRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-Rotate Timer (Runs reliably, pauses only during active drag/touch or when offscreen)
+  useEffect(() => {
+    if (!autoRotate || isDragging || isInteracting || !isVisible || items.length <= 1) return;
 
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % items.length);
     }, rotateInterval);
 
     return () => clearInterval(interval);
-  }, [autoRotate, isDragging, isInteracting, rotateInterval, items.length]);
+  }, [autoRotate, isDragging, isInteracting, isVisible, rotateInterval, items.length]);
 
   // Touch gesture handlers
   const handleTouchStart = (e: TouchEvent) => {
@@ -320,7 +334,7 @@ const ThreeDCarousel: React.FC<ThreeDCarouselProps> = ({
 
                     {/* Dark Overlay on Non-Active Side Cards for Crisp Depth & Contrast */}
                     {!isActive && (
-                      <div className="absolute inset-0 bg-[#041626]/60 backdrop-blur-[1px] pointer-events-none rounded-2xl transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-[#041626]/75 pointer-events-none rounded-2xl transition-opacity duration-500" />
                     )}
                   </Card>
                 </div>

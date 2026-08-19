@@ -162,7 +162,12 @@ export default function RotatingEarth({
         context.lineWidth = 1.2 * scaleFactor
         context.stroke()
 
-        // Draw halftone dots (pure crisp white matching hero text)
+        // Draw halftone dots (batched into a single path call for maximum performance)
+        context.beginPath()
+        context.fillStyle = "#999999"
+        const dotRadius = 1.25 * scaleFactor
+        const twoPi = 2 * Math.PI
+
         allDots.forEach((dot) => {
           const projected = projection([dot.lng, dot.lat])
           if (
@@ -172,12 +177,11 @@ export default function RotatingEarth({
             projected[1] >= 0 &&
             projected[1] <= size
           ) {
-            context.beginPath()
-            context.arc(projected[0], projected[1], 1.25 * scaleFactor, 0, 2 * Math.PI)
-            context.fillStyle = "#999999"
-            context.fill()
+            context.moveTo(projected[0] + dotRadius, projected[1])
+            context.arc(projected[0], projected[1], dotRadius, 0, twoPi)
           }
         })
+        context.fill()
       }
     }
 
@@ -210,8 +214,16 @@ export default function RotatingEarth({
 
     // Set up continuous rotation
     const rotation: [number, number] = [0, -10] // Slight tilt for natural 3D earth perspective
+    let isVisible = true
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting
+    }, { threshold: 0.05 })
+
+    observer.observe(canvas)
 
     const rotate = () => {
+      if (!isVisible) return
       rotation[0] += speed
       projection.rotate(rotation)
       render()
@@ -225,6 +237,7 @@ export default function RotatingEarth({
 
     // Cleanup
     return () => {
+      observer.disconnect()
       rotationTimer.stop()
     }
   }, [width, height, speed])

@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import type { PageView } from '../types';
 import { DEVICE_GRADES, GRADING_CRITERIA } from '../data/gradingData';
+import { AngledSlider } from './lightswind/angled-slider';
 
 interface GradingPageProps {
   setActivePage: (page: PageView) => void;
@@ -54,71 +55,68 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
   return (
     <div className="min-h-screen bg-[#F7F6F3] text-[#171717] font-sans antialiased">
       {/* ------------------------------------------------------------------------- */}
-      {/* 1. PAGE INTRODUCTION HEADER                                              */}
+      {/* 1 & 2. UNIFIED DEVICE GRADING & CLASSIFICATION SECTION                   */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="pt-28 pb-16 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F1EFEA] border-b border-[#E4E1DB] relative overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm">
-            <Layers size={14} className="text-[#00A3E0]" /> DEVICE GRADING
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#171717] mb-4">
-            Grading Explained
-          </h1>
-          <p className="text-base sm:text-lg text-[#5F5B55] leading-relaxed max-w-2xl mx-auto">
-            Clear, detailed grading for devices, from pristine to used, ensuring you understand quality before every purchase.
-          </p>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------------------- */}
-      {/* 2. DEVICE GRADES GRID (SIX-ITEM SYSTEM)                                   */}
-      {/* ------------------------------------------------------------------------- */}
-      <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F7F6F3]">
+      <section className="pt-28 pb-14 sm:pb-20 px-4 sm:px-12 md:px-20 lg:px-28 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-[#171717] mb-3">
+          <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm">
+              <Layers size={14} className="text-[#00A3E0]" /> DEVICE GRADING
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#171717] mb-4">
               Standardized Device Classification
-            </h2>
-            <p className="text-xs sm:text-sm text-[#5F5B55] leading-relaxed">
+            </h1>
+            <p className="text-base sm:text-lg text-[#5F5B55] leading-relaxed max-w-2xl mx-auto">
               Every unit in our inventory is benchmarked against rigorous criteria to ensure full operational confidence and accurate commercial expectations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {DEVICE_GRADES.map((item, idx) => (
-              <div
-                key={`${item.id}-${idx}`}
-                className="bg-[#041626] text-white p-7 rounded-2xl border border-[#00A3E0]/30 shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-3 mb-5">
-                    {/* Cyan-tinted circular icon container */}
-                    <div className="w-12 h-12 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] flex items-center justify-center shrink-0">
-                      {getGradeIcon(idx)}
+          <div className="w-full overflow-hidden py-2 sm:py-4">
+            <AngledSlider
+              speed={12}
+              angle={18}
+              containerHeight="430px"
+              cardWidth="340px"
+              gap="32px"
+              hoverScale={1.08}
+              className="bg-white"
+              childrenNodes={DEVICE_GRADES.map((item, idx) => (
+                <div
+                  key={`${item.id}-${idx}`}
+                  className="bg-[#041626] text-white p-5 sm:p-7 rounded-2xl border border-[#00A3E0]/30 shadow-2xl flex flex-col justify-between h-full hover:border-[#00A3E0] transition-colors duration-300 relative overflow-hidden select-none"
+                >
+                  {/* Subtle corner cyan gradient highlight */}
+                  <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#00A3E0]/20 rounded-full blur-xl pointer-events-none" />
+
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] flex items-center justify-center shrink-0 shadow-inner">
+                        {getGradeIcon(idx)}
+                      </div>
+                      <span className="px-2.5 sm:px-3.5 py-1 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-[10px] sm:text-[11px] font-semibold tracking-wide">
+                        {item.badge}
+                      </span>
                     </div>
-                    <span className="px-3.5 py-1 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-[11px] font-semibold tracking-wide">
-                      {item.badge}
-                    </span>
+
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 sm:mb-2 tracking-tight">
+                      {item.grade}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-white/80 leading-relaxed mb-4 sm:mb-6">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {item.grade}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed mb-6">
-                    {item.description}
-                  </p>
+                  <div className="pt-3 sm:pt-4 border-t border-white/15 flex items-center justify-between">
+                    <span className="text-[10px] sm:text-[11px] font-semibold text-white/60 uppercase tracking-wider">
+                      Warranty Scope
+                    </span>
+                    <span className="text-[11px] sm:text-xs font-semibold text-[#00A3E0] bg-[#00A3E0]/15 px-2.5 sm:px-3 py-1 rounded-lg border border-[#00A3E0]/30">
+                      {item.warranty}
+                    </span>
+                  </div>
                 </div>
-
-                <div className="pt-4 border-t border-white/15 flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-white/60 uppercase tracking-wider">
-                    Warranty Scope
-                  </span>
-                  <span className="text-xs font-semibold text-[#00A3E0] bg-[#00A3E0]/15 px-3 py-1 rounded-lg border border-[#00A3E0]/30">
-                    {item.warranty}
-                  </span>
-                </div>
-              </div>
-            ))}
+              ))}
+            />
           </div>
         </div>
       </section>

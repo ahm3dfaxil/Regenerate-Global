@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import React, { forwardRef, useRef, useMemo, useLayoutEffect, useEffect } from 'react';
+import React, { forwardRef, useRef, useMemo, useLayoutEffect, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Color, Mesh } from 'three';
 
@@ -71,9 +71,10 @@ void main() {
 
 interface SilkPlaneProps {
   uniforms: any;
+  isVisible: boolean;
 }
 
-const SilkPlane = forwardRef<Mesh, SilkPlaneProps>(function SilkPlane({ uniforms }, ref) {
+const SilkPlane = forwardRef<Mesh, SilkPlaneProps>(function SilkPlane({ uniforms, isVisible }, ref) {
   const { viewport } = useThree();
 
   useLayoutEffect(() => {
@@ -83,6 +84,7 @@ const SilkPlane = forwardRef<Mesh, SilkPlaneProps>(function SilkPlane({ uniforms
   }, [ref, viewport]);
 
   useFrame((_, delta) => {
+    if (!isVisible) return;
     if (ref && 'current' in ref && ref.current) {
       const material = ref.current.material as any;
       if (material && material.uniforms && material.uniforms.uTime) {
@@ -115,7 +117,22 @@ const Silk: React.FC<SilkProps> = ({
   noiseIntensity = 1.5,
   rotation = 0
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
   const meshRef = useRef<Mesh>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const uniforms = useMemo(
     () => ({
@@ -141,12 +158,15 @@ const Silk: React.FC<SilkProps> = ({
   }, [speed, scale, noiseIntensity, color, rotation, uniforms]);
 
   return (
-    <Canvas
-      dpr={1}
-      gl={{ powerPreference: 'low-power', antialias: false, alpha: true, preserveDrawingBuffer: false }}
-    >
-      <SilkPlane ref={meshRef} uniforms={uniforms} />
-    </Canvas>
+    <div ref={containerRef} className="w-full h-full">
+      <Canvas
+        dpr={1}
+        gl={{ powerPreference: 'low-power', antialias: false, alpha: true, preserveDrawingBuffer: false }}
+        frameloop={isVisible ? 'always' : 'never'}
+      >
+        <SilkPlane ref={meshRef} uniforms={uniforms} isVisible={isVisible} />
+      </Canvas>
+    </div>
   );
 };
 

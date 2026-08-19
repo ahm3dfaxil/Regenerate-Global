@@ -21,45 +21,46 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
   const [activeSection, setActiveSection] = useState<string>('home');
 
   useEffect(() => {
-    const handleScroll = () => {
+    let running = false;
+
+    const updateScrollState = () => {
       const currentScrollY = window.scrollY || document.documentElement.scrollTop || 0;
       setIsScrolled(currentScrollY > 20);
-    };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      if (activePage === 'home') {
+        if (currentScrollY < 200) {
+          setActiveSection('home');
+        } else {
+          const scrollPosition = currentScrollY + 220;
+          const sectionIds = ['contact', 'about', 'wholesale', 'services'];
+          let current = 'home';
 
-  useEffect(() => {
-    if (activePage !== 'home') return;
-
-    const handleScrollSections = () => {
-      const scrollPosition = (window.scrollY || document.documentElement.scrollTop || 0) + 220;
-
-      if (window.scrollY < 200) {
-        setActiveSection('home');
-        return;
-      }
-
-      const sectionIds = ['contact', 'about', 'wholesale', 'services'];
-      let current = 'home';
-
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPosition >= top) {
-            current = id;
-            break;
+          for (const id of sectionIds) {
+            const el = document.getElementById(id);
+            if (el) {
+              const top = el.offsetTop;
+              if (scrollPosition >= top) {
+                current = id;
+                break;
+              }
+            }
           }
+          setActiveSection(current);
         }
       }
-      setActiveSection(current);
+      running = false;
     };
 
-    handleScrollSections();
-    window.addEventListener('scroll', handleScrollSections, { passive: true });
-    return () => window.removeEventListener('scroll', handleScrollSections);
+    const handleScroll = () => {
+      if (!running) {
+        running = true;
+        requestAnimationFrame(updateScrollState);
+      }
+    };
+
+    updateScrollState();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [activePage]);
 
   const handleNavClick = (page: PageView, sectionId?: string) => {

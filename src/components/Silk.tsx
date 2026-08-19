@@ -142,9 +142,8 @@ const Silk: React.FC<SilkProps> = ({
 
   return (
     <Canvas
-      dpr={[1, 1.5]}
-      frameloop="always"
-      gl={{ powerPreference: 'high-performance', antialias: false, alpha: true }}
+      dpr={1}
+      gl={{ powerPreference: 'low-power', antialias: false, alpha: true, preserveDrawingBuffer: false }}
     >
       <SilkPlane ref={meshRef} uniforms={uniforms} />
     </Canvas>

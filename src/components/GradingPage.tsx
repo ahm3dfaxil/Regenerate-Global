@@ -14,7 +14,6 @@ import {
 } from 'lucide-react';
 import type { PageView } from '../types';
 import { DEVICE_GRADES, GRADING_CRITERIA } from '../data/gradingData';
-import LogoLoop from './LogoLoop';
 
 interface GradingPageProps {
   setActivePage: (page: PageView) => void;
@@ -57,10 +56,10 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       {/* 1. PAGE INTRODUCTION HEADER                                              */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="pt-24 pb-16 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F1EFEA] border-b border-[#E4E1DB]">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E4E1DB] text-[#171717] text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm">
-            <Layers size={14} /> DEVICE GRADING
+      <section className="pt-28 pb-16 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F1EFEA] border-b border-[#E4E1DB] relative overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm">
+            <Layers size={14} className="text-[#00A3E0]" /> DEVICE GRADING
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#171717] mb-4">
             Grading Explained
@@ -89,32 +88,32 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
             {DEVICE_GRADES.map((item, idx) => (
               <div
                 key={`${item.id}-${idx}`}
-                className="bg-white p-7 rounded-2xl border border-[#E4E1DB] shadow-sm hover:shadow-md hover:border-[#D6D1C8] transition-all duration-200 flex flex-col justify-between"
+                className="bg-[#041626] text-white p-7 rounded-2xl border border-[#00A3E0]/30 shadow-sm flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-5">
-                    {/* Subtle warm-neutral circular icon container */}
-                    <div className="w-12 h-12 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] flex items-center justify-center shrink-0">
+                    {/* Cyan-tinted circular icon container */}
+                    <div className="w-12 h-12 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] flex items-center justify-center shrink-0">
                       {getGradeIcon(idx)}
                     </div>
-                    <span className="px-3 py-1 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] text-[11px] font-semibold tracking-wide">
+                    <span className="px-3.5 py-1 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-[11px] font-semibold tracking-wide">
                       {item.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-[#171717] mb-2">
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     {item.grade}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#5F5B55] leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed mb-6">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[#E4E1DB] flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-[#858078] uppercase tracking-wider">
+                <div className="pt-4 border-t border-white/15 flex items-center justify-between">
+                  <span className="text-[11px] font-semibold text-white/60 uppercase tracking-wider">
                     Warranty Scope
                   </span>
-                  <span className="text-xs font-semibold text-[#171717] bg-[#F7F6F3] px-2.5 py-1 rounded-md border border-[#E4E1DB]">
+                  <span className="text-xs font-semibold text-[#00A3E0] bg-[#00A3E0]/15 px-3 py-1 rounded-lg border border-[#00A3E0]/30">
                     {item.warranty}
                   </span>
                 </div>
@@ -130,7 +129,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       <section className="py-14 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-y border-[#E4E1DB]">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg sm:text-xl md:text-2xl font-medium text-[#171717] leading-relaxed">
-            At <strong className="text-[#171717] font-semibold">Regenerate Global</strong>, we employ advanced diagnostic tools to thoroughly test every device’s functionality.
+            At <strong className="text-[#0084C7] font-semibold">Regenerate Global</strong>, we employ advanced diagnostic tools to thoroughly test every device’s functionality.
           </p>
         </div>
       </section>
@@ -141,27 +140,27 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F7F6F3]">
         <div className="max-w-5xl mx-auto">
           {/* Corporate Information Panel */}
-          <div className="bg-white p-8 sm:p-12 rounded-3xl border border-[#E4E1DB] shadow-sm relative overflow-hidden">
-            {/* Decorative Gold Accent Line */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#171717] via-[#171717] to-[#171717]" />
+          <div className="bg-[#041626] text-white p-8 sm:p-12 rounded-3xl border border-[#00A3E0]/30 shadow-sm relative overflow-hidden">
+            {/* Decorative Silk Cyan Accent Line */}
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#00A3E0] via-white to-[#00A3E0]" />
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2.5 rounded-xl bg-[#F1EFEA] text-[#171717] border border-[#E4E1DB]">
+              <div className="p-3 rounded-2xl bg-[#00A3E0]/15 text-[#00A3E0] border border-[#00A3E0]/40">
                 <Search size={20} />
               </div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#171717]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#00A3E0]">
                 Inspection Methodology
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-semibold text-[#171717] mb-2">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-2">
               Our Rigorous Inspection Process
             </h2>
-            <h3 className="text-base sm:text-lg font-medium text-[#171717] mb-6">
+            <h3 className="text-base sm:text-lg font-medium text-white/80 mb-6">
               Thorough checks for condition and performance accuracy.
             </h3>
 
-            <div className="space-y-4 text-xs sm:text-sm text-[#5F5B55] leading-relaxed border-t border-[#E4E1DB] pt-6">
+            <div className="space-y-4 text-xs sm:text-sm text-white/80 leading-relaxed border-t border-white/15 pt-6">
               <p>
                 Every device we handle undergoes a meticulous inspection process. We evaluate physical appearance, functionality and performance to ensure accurate grading. Our team uses advanced tools and expertise to check every detail, from screens to internal components.
               </p>
@@ -189,17 +188,17 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {GRADING_CRITERIA.map((cat) => (
-              <div key={cat.title} className="bg-[#F7F6F3] p-6 rounded-2xl border border-[#E4E1DB]">
-                <div className="w-10 h-10 rounded-xl bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] flex items-center justify-center mb-4">
+              <div key={cat.title} className="bg-[#041626] text-white p-6 rounded-2xl border border-[#00A3E0]/30 shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] flex items-center justify-center mb-4">
                   {getCriteriaIcon(cat.iconName)}
                 </div>
-                <h3 className="text-base font-semibold text-[#171717] mb-3">
+                <h3 className="text-base font-semibold text-white mb-3">
                   {cat.title}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {cat.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-xs text-[#171717] font-medium">
-                      <ChevronRight size={14} className="text-[#171717] shrink-0" />
+                    <li key={item} className="flex items-center gap-2 text-xs text-white/80 font-medium">
+                      <ChevronRight size={14} className="text-[#00A3E0] shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -210,89 +209,37 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
         </div>
       </section>
 
-      {/* ------------------------------------------------------------------------- */}
-      {/* 6. OUR TOP BRANDS                                                        */}
-      {/* ------------------------------------------------------------------------- */}
-      <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F7F6F3] overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-[#171717] mb-3">
-              Our Top Brands
-            </h2>
-            <p className="text-sm text-[#5F5B55] leading-relaxed">
-              We specialize in all white label brands, from Alcatel to Huawei, covering mobile phones, tablets, and related products.
-            </p>
-          </div>
-
-          <div className="py-8">
-            <LogoLoop
-              logos={[
-                { src: '/iphone-logo.png', alt: 'Apple', title: 'Apple' },
-                { src: '/Samsung-Logo.jpg', alt: 'Samsung', title: 'Samsung' },
-                { src: '/huawei-.png', alt: 'Huawei', title: 'Huawei' },
-                { src: '/Alcatel-logo.wine.png', alt: 'Alcatel', title: 'Alcatel' },
-                { src: '/lenovo-logo.svg', alt: 'Lenovo', title: 'Lenovo' },
-                { src: '/Xiaomi-Logo-2014.png', alt: 'Xiaomi', title: 'Xiaomi' },
-                { src: '/google-logo.svg', alt: 'Google', title: 'Google' },
-                { src: '/Motorola.png', alt: 'Motorola', title: 'Motorola' },
-                { src: '/Sony.png', alt: 'Sony', title: 'Sony' },
-                { src: '/LG logo.svg', alt: 'LG', title: 'LG' },
-                { src: '/Oppo-Logo.wine.svg', alt: 'OPPO', title: 'OPPO' }
-              ]}
-              speed={130}
-              direction="left"
-              logoHeight={84}
-              gap={32}
-              pauseOnHover={false}
-              scaleOnHover
-              fadeOut
-              ariaLabel="Top brand logos"
-              renderItem={(item: any) => (
-                <div
-                  title={item.title}
-                  className="w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-3xl border border-[#E4E1DB] flex items-center justify-center p-5 shadow-sm hover:shadow-lg hover:border-[#171717] transition-all group cursor-pointer"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt || item.title}
-                    className="max-h-20 max-w-20 sm:max-h-24 sm:max-w-26 object-contain transition-transform duration-300 group-hover:scale-115"
-                  />
-                </div>
-              )}
-            />
-          </div>
-        </div>
-      </section>
 
       {/* ------------------------------------------------------------------------- */}
       {/* 7. TRANSPARENCY / CONFIDENCE & CTA SECTION                                */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-t border-[#E4E1DB]">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F1EFEA] border border-[#E4E1DB] text-[#171717] text-xs font-semibold uppercase mb-4">
+      <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#041626] text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00A3E0]/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-xs font-semibold uppercase mb-4 shadow-sm">
             <ShieldCheck size={14} /> Quality Guarantee
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#171717] mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-4">
             Quality You Can Understand
           </h2>
-          <p className="text-sm sm:text-base text-[#5F5B55] leading-relaxed max-w-2xl mx-auto mb-8">
+          <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-2xl mx-auto mb-8">
             Our grading process is designed to give customers a clear understanding of device condition before purchase. Every grade represents a defined level of condition, functionality and quality.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => handleCtaClick('home', 'wholesale')}
-              className="inline-flex items-center gap-2 text-[13px] font-medium text-white bg-[#171717] border border-[#171717] rounded-full px-7 py-3.5 hover:bg-[#171717] transition-all shadow-sm cursor-pointer group"
+              className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-[#041626] bg-[#00A3E0] hover:bg-white rounded-full px-7 py-3.5 transition-all duration-300 shadow-md cursor-pointer group"
             >
               Explore Our Products
-              <span className="text-[#171717] transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="text-[#041626] transition-transform group-hover:translate-x-1">→</span>
             </button>
             <button
               onClick={() => handleCtaClick('home', 'contact')}
-              className="inline-flex items-center gap-2 text-[13px] font-medium text-[#171717] bg-white border border-[#D6D1C8] rounded-full px-7 py-3.5 hover:border-[#171717] hover:bg-[#171717] hover:text-white transition-all shadow-sm cursor-pointer group"
+              className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-white bg-white/10 border border-white/30 rounded-full px-7 py-3.5 hover:bg-white/20 transition-all duration-300 shadow-sm cursor-pointer group"
             >
               Contact Us
-              <span className="text-[#171717] group-hover:text-[#171717] transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="text-white transition-transform group-hover:translate-x-1">→</span>
             </button>
           </div>
         </div>

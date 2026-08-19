@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import type { PageView } from '../types';
 
-const Logo: React.FC = () => (
+const Logo: React.FC<{ className?: string }> = ({ className = "h-10 sm:h-12 w-auto object-contain" }) => (
   <img
     src="/logo-transparent.png"
     alt="Regenerate Global Logo"
-    className="w-8 h-8 object-contain"
+    className={className}
   />
 );
 
@@ -62,26 +62,25 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 pb-2 px-4 sm:px-8 transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 pb-2 px-6 sm:px-12 md:px-20 lg:px-28 transition-all duration-300 ease-in-out ${
         isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
       }`}
     >
-      <nav className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+      <nav className="w-full flex items-center justify-between gap-3">
         {/* Desktop Navbar Container */}
-        <div className="hidden lg:flex items-center justify-center w-full gap-3">
+        <div className="hidden lg:flex items-center justify-between w-full relative">
+          {/* Far Top Left Logo (Aligned with 'R' in REGENERATE GLOBAL) */}
           <button
             onClick={() => handleNavClick('home')}
-            className={`flex items-center justify-center rounded-full w-10 h-10 sm:w-11 sm:h-11 shrink-0 shadow-sm hover:opacity-90 transition-all focus:outline-none ${
-              isScrolled ? 'shadow-md' : ''
-            }`}
-            style={{ backgroundColor: '#EDEDED' }}
+            className="flex items-center cursor-pointer focus:outline-none hover:opacity-90 transition-opacity shrink-0 z-10"
             title="Regenerate Global Home"
           >
-            <Logo />
+            <Logo className="h-14 sm:h-16 md:h-18 lg:h-20 w-auto object-contain drop-shadow-md" />
           </button>
 
+          {/* Centered Nav Links Pill in the Middle */}
           <div
-            className={`flex items-center gap-6 xl:gap-8 rounded-xl px-6 py-2.5 border border-[#E4E1DB] backdrop-blur-md transition-all duration-300 ${
+            className={`absolute left-1/2 -translate-x-1/2 flex items-center gap-6 xl:gap-8 rounded-xl px-6 py-2.5 border border-[#E4E1DB] backdrop-blur-md transition-all duration-300 ${
               isScrolled ? 'shadow-md bg-[#EDEDED]/95 border-[#D6D1C8]' : 'shadow-sm bg-[#EDEDED]'
             }`}
           >
@@ -114,12 +113,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
             <button
               onClick={() => handleNavClick('grading')}
               className={`text-[13px] font-medium transition-colors duration-200 flex items-center gap-1.5 ${
-                activePage === 'grading' ? 'text-[#B08D57] font-semibold' : 'text-[#171717] hover:text-[#B08D57]'
+                activePage === 'grading' ? 'text-[#0084C7] font-semibold' : 'text-[#171717] hover:text-[#0084C7]'
               }`}
             >
               Grading
               {activePage === 'grading' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#171717]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
               )}
             </button>
             <button
@@ -129,32 +128,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
               Contact
             </button>
           </div>
-
-          <button
-            onClick={() => handleNavClick('home', 'contact')}
-            className={`inline-flex items-center gap-1.5 text-[13px] font-medium text-white bg-[#171717] rounded-xl px-5 py-2.5 hover:bg-[#171717] transition-all shadow-sm cursor-pointer ${
-              isScrolled ? 'shadow-md' : ''
-            }`}
-          >
-            Get in Touch
-          </button>
         </div>
 
         {/* Mobile Header Bar */}
-        <div className={`flex lg:hidden items-center justify-between w-full backdrop-blur-md rounded-xl px-4 py-2.5 border border-[#E4E1DB] transition-all duration-300 ${
+        <div className={`flex lg:hidden items-center justify-between w-full backdrop-blur-md rounded-xl px-4 py-2 border border-[#E4E1DB] transition-all duration-300 ${
           isScrolled ? 'bg-[#EDEDED]/95 shadow-md border-[#D6D1C8]' : 'bg-[#EDEDED]/90 shadow-sm'
         }`}>
-          <div
+          <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex items-center cursor-pointer focus:outline-none"
           >
-            <div className="flex items-center justify-center rounded-full w-9 h-9 shrink-0 bg-[#EDEDED]">
-              <Logo />
-            </div>
-            <span className="text-xs font-semibold tracking-tight text-[#171717]">
-              REGENERATE GLOBAL
-            </span>
-          </div>
+            <Logo className="h-8 sm:h-9 w-auto object-contain" />
+          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-1.5 text-[#171717] hover:text-[#171717] rounded-lg focus:outline-none"
@@ -204,12 +189,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
               className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
             >
               Contact
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'contact')}
-              className="mt-2 text-center text-sm font-medium text-white bg-[#171717] px-4 py-2.5 rounded-xl hover:bg-[#171717] transition-colors"
-            >
-              Get in Touch
             </button>
           </div>
         </div>

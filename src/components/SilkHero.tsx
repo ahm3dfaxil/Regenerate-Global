@@ -16,7 +16,7 @@ export const SilkHero: React.FC<SilkHeroProps> = ({
   handleCtaClick
 }) => {
   return (
-    <section className="relative min-h-screen md:h-screen w-full overflow-hidden bg-[#041626] text-white flex flex-col justify-between pt-20 pb-6 sm:pt-28 sm:pb-10 px-5 sm:px-12 md:px-20 lg:px-28 select-none">
+    <section className="relative min-h-screen md:h-screen w-full overflow-hidden bg-[#041626] text-white flex flex-col justify-between pt-28 sm:pt-32 md:pt-36 pb-6 sm:pb-10 px-6 sm:px-12 md:px-20 lg:px-28 xl:px-32 select-none">
       {/* Background 3D Silk Canvas - Smooth, slow, royal enterprise blue silk texture */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-80 pointer-events-none">
         <Silk
@@ -53,8 +53,11 @@ export const SilkHero: React.FC<SilkHeroProps> = ({
           </div>
         </div>
 
-        {/* Main Headline - Pure Crisp White */}
-        <h1 className="animate-hero-title text-[1.4rem] xs:text-[1.6rem] sm:text-[2.2rem] md:text-[2.65rem] lg:text-[3rem] xl:text-[3.25rem] leading-[1.12] sm:leading-[1.08] font-bold text-white tracking-[-0.02em] mb-4 sm:mb-6 whitespace-pre-line drop-shadow-md">
+        {/* Main Headline - Editorial Instrument Serif */}
+        <h1
+          className="animate-hero-title text-[1.8rem] xs:text-[2.1rem] sm:text-[2.8rem] md:text-[3.3rem] lg:text-[3.75rem] xl:text-[4.1rem] leading-[1.08] font-normal text-white tracking-[-0.01em] mb-4 sm:mb-6 whitespace-pre-line drop-shadow-md"
+          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+        >
           {fullHeadlineText}
         </h1>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import type { PageView } from '../types';
 
@@ -17,183 +17,162 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const lastScrollY = useRef(0);
+  const [activeSection, setActiveSection] = useState<string>('home');
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-
       setIsScrolled(currentScrollY > 20);
-
-      if (currentScrollY <= 20) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
-        // Scrolling DOWN -> Hide Navbar
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollY.current) {
-        // Scrolling UP -> Reveal Navbar smoothly
-        setIsVisible(true);
-      }
-
-      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (activePage !== 'home') return;
+
+    const handleScrollSections = () => {
+      const scrollPosition = (window.scrollY || document.documentElement.scrollTop || 0) + 220;
+
+      if (window.scrollY < 200) {
+        setActiveSection('home');
+        return;
+      }
+
+      const sectionIds = ['contact', 'about', 'wholesale', 'services'];
+      let current = 'home';
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            current = id;
+            break;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    handleScrollSections();
+    window.addEventListener('scroll', handleScrollSections, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSections);
+  }, [activePage]);
+
   const handleNavClick = (page: PageView, sectionId?: string) => {
     setActivePage(page);
     setMobileMenuOpen(false);
-    setIsVisible(true);
-    if (page === 'home' && sectionId) {
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+
+    if (page === 'home') {
+      if (sectionId) {
+        setActiveSection(sectionId);
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 50);
+      } else {
+        setActiveSection('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } else if (page === 'grading') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
+  const navItems = [
+    { id: 'home', label: 'Home', isPage: 'home' as PageView, sectionId: undefined },
+    { id: 'services', label: 'Services', isPage: 'home' as PageView, sectionId: 'services' },
+    { id: 'wholesale', label: 'Products & Wholesale', isPage: 'home' as PageView, sectionId: 'wholesale' },
+    { id: 'grading', label: 'Device Grading', isPage: 'grading' as PageView, sectionId: undefined },
+    { id: 'about', label: 'About', isPage: 'home' as PageView, sectionId: 'about' },
+    { id: 'contact', label: 'Contact', isPage: 'home' as PageView, sectionId: 'contact' },
+  ];
+
+  const isItemActive = (item: typeof navItems[0]) => {
+    if (item.isPage === 'grading') {
+      return activePage === 'grading';
+    }
+    if (activePage === 'grading') return false;
+    if (!item.sectionId) return activeSection === 'home';
+    return activeSection === item.sectionId;
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 pb-2 px-6 sm:px-12 md:px-20 lg:px-28 transition-all duration-300 ease-in-out ${
-        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+      className={`fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-[#E5E7EB] transition-all duration-300 ease-in-out ${
+        isScrolled ? 'shadow-md border-[#DCD8D0]' : 'shadow-xs'
       }`}
     >
-      <nav className="w-full flex items-center justify-between gap-3">
-        {/* Desktop Navbar Container */}
-        <div className="hidden lg:flex items-center justify-between w-full relative">
-          {/* Far Top Left Logo (Aligned with 'R' in REGENERATE GLOBAL) */}
-          <button
-            onClick={() => handleNavClick('home')}
-            className="flex items-center cursor-pointer focus:outline-none hover:opacity-90 transition-opacity shrink-0 z-10"
-            title="Regenerate Global Home"
-          >
-            <Logo className="h-14 sm:h-16 md:h-18 lg:h-20 w-auto object-contain drop-shadow-md" />
-          </button>
+      <div className="w-full px-6 sm:px-12 md:px-20 lg:px-28 xl:px-32 h-20 sm:h-22 md:h-[96px] flex items-center justify-between gap-4 relative">
+        {/* Desktop & Mobile Left Logo */}
+        <button
+          onClick={() => handleNavClick('home')}
+          className="flex items-center cursor-pointer focus:outline-none hover:opacity-90 transition-opacity shrink-0 py-1 z-10 ml-4 sm:ml-8 md:ml-14 lg:ml-20 xl:ml-24"
+          title="Regenerate Global Home"
+        >
+          <Logo className="h-14 sm:h-16 md:h-[78px] lg:h-[85px] w-auto object-contain" />
+        </button>
 
-          {/* Centered Nav Links Pill in the Middle */}
-          <div
-            className={`absolute left-1/2 -translate-x-1/2 flex items-center gap-6 xl:gap-8 rounded-xl px-6 py-2.5 border border-[#E4E1DB] backdrop-blur-md transition-all duration-300 ${
-              isScrolled ? 'shadow-md bg-[#EDEDED]/95 border-[#D6D1C8]' : 'shadow-sm bg-[#EDEDED]'
-            }`}
-          >
-            <button
-              onClick={() => handleNavClick('home')}
-              className={`text-[13px] font-medium transition-colors duration-200 ${
-                activePage === 'home' ? 'text-[#171717] font-semibold' : 'text-[#171717] hover:text-[#171717]'
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'about')}
-              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
-            >
-              About
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'services')}
-              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'wholesale')}
-              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
-            >
-              Products / Wholesale
-            </button>
-            <button
-              onClick={() => handleNavClick('grading')}
-              className={`text-[13px] font-medium transition-colors duration-200 flex items-center gap-1.5 ${
-                activePage === 'grading' ? 'text-[#0084C7] font-semibold' : 'text-[#171717] hover:text-[#0084C7]'
-              }`}
-            >
-              Grading
-              {activePage === 'grading' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-              )}
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'contact')}
-              className="text-[13px] font-medium text-[#171717] hover:text-[#171717] transition-colors duration-200"
-            >
-              Contact
-            </button>
-          </div>
-        </div>
+        {/* Desktop Navigation Links Centered in Middle */}
+        <nav className="hidden lg:flex items-center gap-7 xl:gap-9 absolute left-1/2 -translate-x-1/2">
+          {navItems.map((item) => {
+            const active = isItemActive(item);
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.isPage, item.sectionId)}
+                className={`text-[15px] tracking-tight transition-colors duration-200 ease-in-out whitespace-nowrap cursor-pointer py-1 relative ${
+                  active
+                    ? 'text-[#0084C7] font-semibold'
+                    : 'text-[#2D3748] font-medium hover:text-[#0084C7]'
+                }`}
+              >
+                {item.label}
+                {active && (
+                  <span className="absolute bottom-[-10px] left-0 right-0 h-[2.5px] bg-[#0084C7] rounded-full" />
+                )}
+              </button>
+            );
+          })}
+        </nav>
 
-        {/* Mobile Header Bar */}
-        <div className={`flex lg:hidden items-center justify-between w-full backdrop-blur-md rounded-xl px-4 py-2 border border-[#E4E1DB] transition-all duration-300 ${
-          isScrolled ? 'bg-[#EDEDED]/95 shadow-md border-[#D6D1C8]' : 'bg-[#EDEDED]/90 shadow-sm'
-        }`}>
-          <button
-            onClick={() => handleNavClick('home')}
-            className="flex items-center cursor-pointer focus:outline-none"
-          >
-            <Logo className="h-11 sm:h-12 w-auto object-contain" />
-          </button>
+        {/* Mobile Menu Toggle Button */}
+        <div className="flex lg:hidden items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 text-[#171717] hover:text-[#171717] rounded-lg focus:outline-none"
+            className="p-2 text-[#171717] hover:text-[#0084C7] rounded-lg focus:outline-none transition-colors"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </nav>
+      </div>
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden mt-2 bg-white/95 backdrop-blur-lg rounded-2xl p-4 shadow-xl border border-[#E4E1DB] animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden bg-white border-t border-[#E5E7EB] px-6 py-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="flex flex-col gap-2">
-            <button
-              onClick={() => handleNavClick('home')}
-              className={`text-left text-sm font-medium px-3 py-2 rounded-lg transition-colors ${
-                activePage === 'home' ? 'bg-[#F1EFEA] font-semibold text-[#171717]' : 'text-[#171717] hover:bg-[#F7F6F3]'
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'about')}
-              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'services')}
-              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'wholesale')}
-              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
-            >
-              Products / Wholesale
-            </button>
-            <button
-              onClick={() => handleNavClick('grading')}
-              className={`text-left text-sm font-medium px-3 py-2 rounded-lg transition-colors ${
-                activePage === 'grading' ? 'bg-[#F1EFEA] font-semibold text-[#0084C7]' : 'text-[#171717] hover:bg-[#F7F6F3]'
-              }`}
-            >
-              Device Grading
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'contact')}
-              className="text-left text-sm font-medium text-[#171717] hover:text-[#171717] px-3 py-2 rounded-lg hover:bg-[#F7F6F3] transition-colors"
-            >
-              Contact
-            </button>
+            {navItems.map((item) => {
+              const active = isItemActive(item);
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.isPage, item.sectionId)}
+                  className={`text-left text-sm tracking-tight px-4 py-2.5 rounded-lg transition-colors duration-200 ${
+                    active
+                      ? 'bg-[#F0F9FF] text-[#0084C7] font-semibold'
+                      : 'text-[#2D3748] font-medium hover:text-[#171717] hover:bg-gray-50'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}

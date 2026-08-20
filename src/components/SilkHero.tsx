@@ -16,7 +16,7 @@ export const SilkHero: React.FC<SilkHeroProps> = ({
   handleCtaClick
 }) => {
   return (
-    <section className="relative min-h-screen md:h-screen w-full overflow-hidden bg-[#041626] text-white flex flex-col justify-between pt-28 sm:pt-32 md:pt-36 pb-6 sm:pb-10 px-6 sm:px-12 md:px-20 lg:px-28 xl:px-32 select-none">
+    <section className="relative min-h-screen md:h-screen w-full overflow-hidden bg-[#041626] text-white flex flex-col justify-between pt-28 sm:pt-32 md:pt-36 pb-6 sm:pb-10 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 select-none">
       {/* Background 3D Silk Canvas - Smooth, slow, royal enterprise blue silk texture */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-80 pointer-events-none">
         <Silk
@@ -32,15 +32,15 @@ export const SilkHero: React.FC<SilkHeroProps> = ({
       <div className="absolute inset-0 bg-gradient-to-r from-[#041626]/95 via-[#041626]/65 to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#041626] via-transparent to-[#041626]/40 z-10 pointer-events-none" />
 
-      {/* Right-Side 3D Wireframe Dotted Globe */}
-      <div className="absolute right-0 lg:right-4 top-0 h-full w-full md:w-[50%] lg:w-[46%] xl:w-[42%] z-10 flex items-center justify-center p-4 overflow-visible opacity-25 md:opacity-95 transition-all duration-500 pointer-events-none">
-        <div className="w-full max-w-[500px] aspect-square flex items-center justify-center">
-          <RotatingEarth width={600} height={600} speed={1.2} className="w-full h-full" />
+      {/* Right-Side 3D Wireframe Dotted Globe - Perfectly bounded between Navbar (top) and Trust Bar (bottom) */}
+      <div className="absolute right-4 sm:right-8 md:right-12 lg:right-16 xl:right-20 top-24 sm:top-28 md:top-24 bottom-16 md:bottom-20 my-auto w-[90%] sm:w-[80%] md:w-[48%] lg:w-[45%] xl:w-[43%] z-10 flex items-center justify-center pointer-events-none opacity-20 md:opacity-95 transition-all duration-500">
+        <div className="w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[500px] xl:max-w-[530px] aspect-square flex items-center justify-center">
+          <RotatingEarth width={540} height={540} speed={1.2} className="w-full h-full" />
         </div>
       </div>
 
       {/* Main Left Foreground Content */}
-      <div className="relative z-20 max-w-xl sm:max-w-2xl lg:max-w-[58%] xl:max-w-[54%] my-auto py-4 md:py-0">
+      <div className="relative z-20 max-w-xl sm:max-w-2xl lg:max-w-[54%] xl:max-w-[52%] my-auto py-4 md:py-0">
         {/* Eyebrow Header - All Pure Crisp White */}
         <div className="animate-hero-badge mb-3 sm:mb-6">
           <div className="uppercase tracking-wider">

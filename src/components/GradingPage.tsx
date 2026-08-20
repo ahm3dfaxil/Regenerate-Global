@@ -57,7 +57,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       {/* 1 & 2. UNIFIED DEVICE GRADING & CLASSIFICATION SECTION                   */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="pt-28 pb-14 sm:pb-20 px-4 sm:px-12 md:px-20 lg:px-28 bg-white overflow-hidden">
+      <section className="pt-28 pb-14 sm:pb-20 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm">
@@ -124,7 +124,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       {/* 3. INSPECTION INTRODUCTION STATEMENT                                      */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="py-14 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-y border-[#E4E1DB]">
+      <section className="py-14 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-white border-y border-[#E4E1DB]">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg sm:text-xl md:text-2xl font-medium text-[#171717] leading-relaxed">
             At <strong className="text-[#0084C7] font-semibold">Regenerate Global</strong>, we employ advanced diagnostic tools to thoroughly test every device’s functionality.
@@ -135,7 +135,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       {/* 4. OUR RIGOROUS INSPECTION PROCESS PANEL                                  */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F7F6F3]">
+      <section className="py-20 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-[#F7F6F3]">
         <div className="max-w-5xl mx-auto">
           {/* Corporate Information Panel */}
           <div className="bg-[#041626] text-white p-8 sm:p-12 rounded-3xl border border-[#00A3E0]/30 shadow-sm relative overflow-hidden">
@@ -173,7 +173,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       {/* 5. GRADING CRITERIA MATRIX                                                */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-y border-[#E4E1DB]">
+      <section className="py-20 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-white border-y border-[#E4E1DB]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#171717] mb-3">
@@ -211,7 +211,7 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
       {/* ------------------------------------------------------------------------- */}
       {/* 7. TRANSPARENCY / CONFIDENCE & CTA SECTION                                */}
       {/* ------------------------------------------------------------------------- */}
-      <section className="py-20 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#041626] text-white relative overflow-hidden">
+      <section className="py-20 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-[#041626] text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00A3E0]/15 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-xs font-semibold uppercase mb-4 shadow-sm">

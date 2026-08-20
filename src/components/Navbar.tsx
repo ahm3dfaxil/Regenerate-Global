@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
         setActiveSection('home');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-    } else if (page === 'grading') {
+    } else if (page === 'grading' || page === 'careers') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -90,6 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
     { id: 'services', label: 'Services', isPage: 'home' as PageView, sectionId: 'services' },
     { id: 'wholesale', label: 'Products & Wholesale', isPage: 'home' as PageView, sectionId: 'wholesale' },
     { id: 'grading', label: 'Device Grading', isPage: 'grading' as PageView, sectionId: undefined },
+    { id: 'careers', label: 'Careers', isPage: 'careers' as PageView, sectionId: undefined },
     { id: 'about', label: 'About', isPage: 'home' as PageView, sectionId: 'about' },
     { id: 'contact', label: 'Contact', isPage: 'home' as PageView, sectionId: 'contact' },
   ];
@@ -98,22 +99,24 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
     if (item.isPage === 'grading') {
       return activePage === 'grading';
     }
-    if (activePage === 'grading') return false;
+    if (item.isPage === 'careers') {
+      return activePage === 'careers';
+    }
+    if (activePage === 'grading' || activePage === 'careers') return false;
     if (!item.sectionId) return activeSection === 'home';
     return activeSection === item.sectionId;
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-[#E5E7EB] transition-all duration-300 ease-in-out ${
-        isScrolled ? 'shadow-md border-[#DCD8D0]' : 'shadow-xs'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-[#E5E7EB] transition-all duration-300 ease-in-out ${isScrolled ? 'shadow-md border-[#DCD8D0]' : 'shadow-xs'
+        }`}
     >
-      <div className="w-full px-6 sm:px-12 md:px-20 lg:px-28 xl:px-32 h-20 sm:h-22 md:h-[96px] flex items-center justify-between gap-4 relative">
+      <div className="w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 h-20 sm:h-22 md:h-[96px] flex items-center justify-between gap-4 relative">
         {/* Desktop & Mobile Left Logo */}
         <button
           onClick={() => handleNavClick('home')}
-          className="flex items-center cursor-pointer focus:outline-none hover:opacity-90 transition-opacity shrink-0 py-1 z-10 ml-4 sm:ml-8 md:ml-14 lg:ml-20 xl:ml-24"
+          className="flex items-center cursor-pointer focus:outline-none hover:opacity-90 transition-opacity shrink-0 py-1 z-10 ml-6 sm:ml-12 md:ml-16 lg:ml-24 xl:ml-28"
           title="Regenerate Global Home"
         >
           <Logo className="h-14 sm:h-16 md:h-[78px] lg:h-[85px] w-auto object-contain" />
@@ -127,11 +130,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.isPage, item.sectionId)}
-                className={`text-[15px] tracking-tight transition-colors duration-200 ease-in-out whitespace-nowrap cursor-pointer py-1 relative ${
-                  active
+                className={`text-[15px] tracking-tight transition-colors duration-200 ease-in-out whitespace-nowrap cursor-pointer py-1 relative ${active
                     ? 'text-[#0084C7] font-semibold'
                     : 'text-[#2D3748] font-medium hover:text-[#0084C7]'
-                }`}
+                  }`}
               >
                 {item.label}
                 {active && (
@@ -164,11 +166,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.isPage, item.sectionId)}
-                  className={`text-left text-sm tracking-tight px-4 py-2.5 rounded-lg transition-colors duration-200 ${
-                    active
+                  className={`text-left text-sm tracking-tight px-4 py-2.5 rounded-lg transition-colors duration-200 ${active
                       ? 'bg-[#F0F9FF] text-[#0084C7] font-semibold'
                       : 'text-[#2D3748] font-medium hover:text-[#171717] hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </button>

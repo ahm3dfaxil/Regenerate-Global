@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './components/HomePage';
 import { GradingPage } from './components/GradingPage';
+import { CareersPage } from './components/CareersPage';
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageView>('home');
@@ -12,6 +13,8 @@ export default function App() {
     const handleHashChange = () => {
       if (window.location.hash === '#grading') {
         setActivePage('grading');
+      } else if (window.location.hash === '#careers') {
+        setActivePage('careers');
       }
     };
     handleHashChange();
@@ -25,11 +28,9 @@ export default function App() {
         <Navbar activePage={activePage} setActivePage={setActivePage} />
 
         <main>
-          {activePage === 'home' ? (
-            <HomePage setActivePage={setActivePage} />
-          ) : (
-            <GradingPage setActivePage={setActivePage} />
-          )}
+          {activePage === 'home' && <HomePage setActivePage={setActivePage} />}
+          {activePage === 'grading' && <GradingPage setActivePage={setActivePage} />}
+          {activePage === 'careers' && <CareersPage setActivePage={setActivePage} />}
         </main>
       </div>
 

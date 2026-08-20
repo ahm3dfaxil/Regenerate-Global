@@ -29,12 +29,62 @@ import {
   Loader2,
   Award,
   Truck,
-  ShoppingBag
+  ShoppingBag,
+  Zap
 } from 'lucide-react';
 import type { PageView } from '../types';
 import ThreeDCarousel from './ThreeDCarousel';
 import { TrustedUsers } from './TrustedUsers';
 import { ThreeDScrollTriggerContainer, ThreeDScrollTriggerRow } from './ThreeDScrollTrigger';
+import StickyScrollCards from './lightswind/StickyScrollCards';
+
+const ABOUT_CAPABILITIES = [
+  {
+    icon: <Globe size={22} />,
+    title: 'Global Connectivity',
+    description: 'Connecting commercial partners, device manufacturers, and enterprise networks across European and global markets.'
+  },
+  {
+    icon: <Cpu size={22} />,
+    title: 'Technology Ecosystems',
+    description: 'Integrating hardware sourcing with digital infrastructure, enterprise software, and mobile platform architectures.'
+  },
+  {
+    icon: <Search size={22} />,
+    title: 'Strategic Procurement',
+    description: 'End-to-end sourcing, tendering support, vendor auditing, and supply chain risk management for enterprise buyers.'
+  },
+  {
+    icon: <Briefcase size={22} />,
+    title: 'B2B Advisory',
+    description: 'Tailored corporate consulting, market expansion strategy, and commercial opportunity development.'
+  },
+  {
+    icon: <Zap size={22} />,
+    title: 'Telecommunications & Infrastructure',
+    description: 'High-capacity carrier networks, VoIP architectures, and global telecommunication equipment sourcing.'
+  },
+  {
+    icon: <Layers size={22} />,
+    title: 'Supply Chain Governance',
+    description: 'Comprehensive device lifecycle management, quality assurance benchmarking, and compliance auditing.'
+  }
+];
+
+const EXPERTISE_DOMAINS = [
+  { title: 'Telecommunications', category: 'Connectivity & Carrier', desc: 'High-volume carrier equipment, optical networks & telecom hardware sourcing.' },
+  { title: 'IT & Infrastructure', category: 'Enterprise Core', desc: 'Server hardware, cloud network architectures & enterprise IT deployments.' },
+  { title: 'Global Procurement', category: 'Supply Chain', desc: 'Cross-border tendering, supplier verification & volume purchasing power.' },
+  { title: 'B2B Solutions', category: 'Corporate Services', desc: 'Custom enterprise integration, commercial agreements & trade solutions.' },
+  { title: 'Technology Sourcing', category: 'Hardware Sourcing', desc: 'Direct factory & distributor sourcing for certified computing & mobile tech.' },
+  { title: 'Digital Development', category: 'Software & Cloud', desc: 'Custom enterprise web platforms, mobile software & API integrations.' },
+  { title: 'E-Commerce Platforms', category: 'Digital Trade', desc: 'Omnichannel B2B marketplaces, automated inventory & payment gateways.' },
+  { title: 'Mobile Applications', category: 'Platform Software', desc: 'Native & cross-platform mobile apps for enterprise fleet & device management.' },
+  { title: 'Business Consulting', category: 'Strategy', desc: 'Market entry strategies, supply chain optimization & risk management.' },
+  { title: 'Sales & Distribution', category: 'Channel Partner', desc: 'Pan-European distribution networks, logistics routing & fulfillment.' },
+  { title: 'Wholesale Trading', category: 'Volume Trade', desc: 'Bulk secondary market trading, certified pre-owned devices & grading.' },
+  { title: 'Supply Chain Strategy', category: 'Logistics', desc: 'End-to-end supply chain resilience, customs compliance & warehousing.' }
+];
 
 
 
@@ -142,7 +192,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       {/* ========================================================================= */}
       {/* 2. WHAT WE DO (CORE BUSINESS PILLARS - 3D CAROUSEL)                      */}
       {/* ========================================================================= */}
-      <section id="services" className="py-20 sm:py-28 px-4 sm:px-8 md:px-12 bg-[#041626] border-y border-[#00A3E0]/20 relative overflow-hidden">
+      <section id="services" className="py-20 sm:py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-[#041626] border-y border-[#00A3E0]/20 relative overflow-hidden">
         {/* Ambient glow background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#00A3E0]/10 blur-[120px] rounded-full pointer-events-none" />
 
@@ -262,7 +312,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       {/* ========================================================================= */}
       {/* 3. TECHNOLOGY & WHOLESALE DIVISION                                       */}
       {/* ========================================================================= */}
-      <section id="wholesale" className="py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-y border-[#E4E1DB]">
+      <section id="wholesale" className="py-20 sm:py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-white border-y border-[#E4E1DB]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6">
@@ -361,7 +411,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       {/* ========================================================================= */}
       {/* 3B. BRAND & PARTNER ECOSYSTEM (3 ANIMATION ROWS)                         */}
       {/* ========================================================================= */}
-      <section id="brands" className="py-10 sm:py-14 px-4 sm:px-8 md:px-14 lg:px-20 bg-[#F7F6F3] border-b border-[#E4E1DB] overflow-hidden">
+      <section id="brands" className="py-10 sm:py-14 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-[#F7F6F3] border-b border-[#E4E1DB] overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
 
           {/* Section Main Header */}
@@ -561,97 +611,66 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. ABOUT REGENERATE GLOBAL                                                */}
+      {/* 4. ABOUT REGENERATE GLOBAL (STICKY WINDOW SCROLL CARDS)                   */}
       {/* ========================================================================= */}
-      <section id="about" className="py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F7F6F3]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Header Column */}
-            <div className="lg:col-span-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wide uppercase mb-4 shadow-sm">
-                <Building2 size={14} className="text-[#00A3E0]" /> Corporate Profile
-              </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#171717] leading-snug mb-6">
-                About Regenerate Global Limited
-              </h2>
-              <p className="text-[#5F5B55] text-sm sm:text-base leading-relaxed mb-6">
-                Established in 2013 in the United Kingdom, Regenerate Global Limited operates as a multidisciplinary corporate entity spanning international technology distribution, telecommunications consulting, global procurement, and strategic B2B solutions.
-              </p>
-              <p className="text-[#5F5B55] text-sm sm:text-base leading-relaxed mb-8">
-                Over more than a decade of active commercial operations, the group has developed deep domain expertise in sourcing enterprise technology, managing complex supply contracts, and building cross-border commercial bridges between international suppliers and enterprise clients.
-              </p>
+      <StickyScrollCards
+        id="about"
+        bgColor="bg-[#F7F6F3]"
+        data={ABOUT_CAPABILITIES}
+        visibleCount={4}
+        itemHeight={125}
+        gap={14}
+        sectionHeader={
+          <>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wide uppercase mb-4 shadow-sm">
+              <Building2 size={14} className="text-[#00A3E0]" /> Corporate Profile
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#171717] leading-snug mb-6">
+              About Regenerate Global Limited
+            </h2>
+            <p className="text-[#5F5B55] text-sm sm:text-base leading-relaxed mb-6">
+              Established in 2013 in the United Kingdom, Regenerate Global Limited operates as a multidisciplinary corporate entity spanning international technology distribution, telecommunications consulting, global procurement, and strategic B2B solutions.
+            </p>
+            <p className="text-[#5F5B55] text-sm sm:text-base leading-relaxed mb-8">
+              Over more than a decade of active commercial operations, the group has developed deep domain expertise in sourcing enterprise technology, managing complex supply contracts, and building cross-border commercial bridges between international suppliers and enterprise clients.
+            </p>
 
-              <div className="p-6 rounded-2xl bg-[#041626] text-white border border-[#00A3E0]/30 shadow-md flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] shrink-0">
-                  <ShieldCheck size={24} />
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-white mb-1">UK Registered Entity — Est. 2013</h4>
-                  <p className="text-xs text-white/80 leading-relaxed">
-                    Operating under full regulatory compliance, governance, and rigorous corporate standards across all business divisions.
-                  </p>
-                </div>
+            <div className="p-6 rounded-2xl bg-[#041626] text-white border border-[#00A3E0]/30 shadow-md flex items-start gap-4">
+              <div className="p-3 rounded-xl bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] shrink-0">
+                <ShieldCheck size={24} />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-white mb-1">UK Registered Entity — Est. 2013</h4>
+                <p className="text-xs text-white/80 leading-relaxed">
+                  Operating under full regulatory compliance, governance, and rigorous corporate standards across all business divisions.
+                </p>
               </div>
             </div>
-
-            {/* Right Capabilities Grid */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="p-6 rounded-2xl bg-[#041626] text-white border border-[#00A3E0]/30 shadow-sm flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] shrink-0">
-                  <Globe size={22} />
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold text-white mb-1.5">Global Connectivity</h3>
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-                    Connecting commercial partners, device manufacturers, and enterprise networks across European and global markets.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-[#041626] text-white border border-[#00A3E0]/30 shadow-sm flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] shrink-0">
-                  <Cpu size={22} />
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold text-white mb-1.5">Technology Ecosystems</h3>
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-                    Integrating hardware sourcing with digital infrastructure, enterprise software, and mobile platform architectures.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-[#041626] text-white border border-[#00A3E0]/30 shadow-sm flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] shrink-0">
-                  <Search size={22} />
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold text-white mb-1.5">Strategic Procurement</h3>
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-                    End-to-end sourcing, tendering support, vendor auditing, and supply chain risk management for enterprise buyers.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-[#041626] text-white border border-[#00A3E0]/30 shadow-sm flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] shrink-0">
-                  <Briefcase size={22} />
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold text-white mb-1.5">B2B Advisory</h3>
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-                    Tailored corporate consulting, market expansion strategy, and commercial opportunity development.
-                  </p>
-                </div>
-              </div>
+          </>
+        }
+        renderItem={(item, _idx, isFocused) => (
+          <div
+            className={`p-5 sm:p-6 rounded-2xl text-white border transition-all duration-300 flex items-start gap-4 ${
+              isFocused
+                ? 'bg-[#041626] border-[#00A3E0] shadow-lg scale-[1.01]'
+                : 'bg-[#041626]/90 border-[#00A3E0]/30 shadow-sm hover:border-[#00A3E0]/60'
+            }`}
+          >
+            <div className="p-3 rounded-2xl bg-[#00A3E0]/15 border border-[#00A3E0]/40 text-[#00A3E0] shrink-0">
+              {item.icon}
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white mb-1.5">{item.title}</h3>
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed">{item.description}</p>
             </div>
           </div>
-        </div>
-      </section>
+        )}
+      />
 
       {/* ========================================================================= */}
       {/* 5. BUSINESS & TECHNOLOGY ECOSYSTEM                                        */}
       {/* ========================================================================= */}
-      <section id="ecosystem" className="py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-y border-[#E4E1DB]">
+      <section id="ecosystem" className="py-20 sm:py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-white border-y border-[#E4E1DB]">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-14">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wide uppercase mb-3 shadow-sm">
@@ -700,64 +719,62 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. OUR EXPERTISE (MULTIDISCIPLINARY AREAS)                                */}
+      {/* 6. OUR EXPERTISE (STICKY WINDOW SCROLL CARDS)                             */}
       {/* ========================================================================= */}
-      <section id="expertise" className="py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F7F6F3]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wide uppercase mb-4 shadow-sm">
-                <Compass size={14} className="text-[#00A3E0]" /> Domain Coverage
-              </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#171717] mb-4">
-                Multidisciplinary Areas of Expertise
-              </h2>
-              <p className="text-sm sm:text-base text-[#5F5B55] leading-relaxed mb-6">
-                Regenerate Global operates across connected industrial and technological domains, providing unified oversight across procurement, digital platforms, and physical device supply chains.
+      <StickyScrollCards
+        id="expertise"
+        bgColor="bg-[#F7F6F3]"
+        data={EXPERTISE_DOMAINS}
+        visibleCount={4}
+        itemHeight={110}
+        gap={12}
+        sectionHeader={
+          <>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wide uppercase mb-4 shadow-sm">
+              <Compass size={14} className="text-[#00A3E0]" /> Domain Coverage
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#171717] mb-4">
+              Multidisciplinary Areas of Expertise
+            </h2>
+            <p className="text-sm sm:text-base text-[#5F5B55] leading-relaxed mb-6">
+              Regenerate Global operates across connected industrial and technological domains, providing unified oversight across procurement, digital platforms, and physical device supply chains.
+            </p>
+            <div className="p-5 rounded-2xl bg-white border-l-4 border-l-[#00A3E0] border border-[#E4E1DB]">
+              <p className="text-xs sm:text-sm text-[#171717] font-medium leading-relaxed">
+                "Our cross-sector capability allows us to advise, source, and deliver across complex business requirements without domain silos."
               </p>
-              <div className="p-5 rounded-2xl bg-white border-l-4 border-l-[#00A3E0] border border-[#E4E1DB]">
-                <p className="text-xs sm:text-sm text-[#171717] font-medium leading-relaxed">
-                  "Our cross-sector capability allows us to advise, source, and deliver across complex business requirements without domain silos."
-                </p>
-              </div>
             </div>
-
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {[
-                  'Telecommunications',
-                  'IT & Infrastructure',
-                  'Global Procurement',
-                  'B2B Solutions',
-                  'Technology Sourcing',
-                  'Digital Development',
-                  'E-Commerce Platforms',
-                  'Mobile Applications',
-                  'Business Consulting',
-                  'Sales & Distribution',
-                  'Wholesale Trading',
-                  'Supply Chain Strategy'
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="p-4 rounded-xl bg-white border border-[#E4E1DB] flex items-center justify-between group shadow-xs hover:border-[#00A3E0]/40 transition-colors"
-                  >
-                    <span className="text-xs sm:text-sm font-medium text-[#171717]">
-                      {item}
-                    </span>
-                    <ChevronRight size={14} className="text-[#858078]" />
-                  </div>
-                ))}
-              </div>
+          </>
+        }
+        renderItem={(item, _idx, isFocused) => (
+          <div
+            className={`p-4 rounded-xl border flex items-center justify-between transition-all duration-300 ${
+              isFocused
+                ? 'bg-white border-[#00A3E0] shadow-md ring-1 ring-[#00A3E0]/30'
+                : 'bg-white/90 border-[#E4E1DB] shadow-xs hover:border-[#00A3E0]/40'
+            }`}
+          >
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#0084C7] bg-[#0084C7]/10 px-2 py-0.5 rounded mb-1 inline-block">
+                {item.category}
+              </span>
+              <h3 className="text-sm sm:text-base font-semibold text-[#171717]">{item.title}</h3>
+              <p className="text-xs text-[#5F5B55] mt-0.5">{item.desc}</p>
             </div>
+            <ChevronRight
+              size={16}
+              className={`transition-colors shrink-0 ml-3 ${
+                isFocused ? 'text-[#0084C7]' : 'text-[#858078]'
+              }`}
+            />
           </div>
-        </div>
-      </section>
+        )}
+      />
 
       {/* ========================================================================= */}
       {/* 7. OUR CONSULTATIVE APPROACH                                             */}
       {/* ========================================================================= */}
-      <section id="approach" className="py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-y border-[#E4E1DB]">
+      <section id="approach" className="py-20 sm:py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-white border-y border-[#E4E1DB]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wide uppercase mb-3 shadow-sm">
@@ -805,7 +822,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       {/* ========================================================================= */}
       {/* 8. CORPORATE INFORMATION & CREDENTIALS                                   */}
       {/* ========================================================================= */}
-      <section id="corporate" className="py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#F7F6F3]">
+      <section id="corporate" className="py-20 sm:py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-[#F7F6F3]">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-12">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041626] border border-[#00A3E0]/40 text-white text-xs font-semibold tracking-wide uppercase mb-3 shadow-sm">
@@ -1015,7 +1032,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       {/* ========================================================================= */}
       {/* 9. CONTACT & BUSINESS ENQUIRIES                                           */}
       {/* ========================================================================= */}
-      <section id="contact" className="py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 bg-white border-t border-[#E4E1DB]">
+      <section id="contact" className="py-20 sm:py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 bg-white border-t border-[#E4E1DB]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Contact Info */}

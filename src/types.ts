@@ -1,4 +1,4 @@
-export type PageView = 'home' | 'grading';
+export type PageView = 'home' | 'grading' | 'careers';
 
 export interface DeviceGrade {
   id: string;

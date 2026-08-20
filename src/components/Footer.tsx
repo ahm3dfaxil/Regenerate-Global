@@ -22,14 +22,14 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
           const el = document.getElementById(sectionId);
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }, 100);
-      } else if (page === 'grading') {
+      } else if (page === 'grading' || page === 'careers') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   };
 
   return (
-    <footer className="bg-[#041626] text-[#858078] py-12 sm:py-16 px-5 sm:px-12 md:px-20 lg:px-28 border-t border-[#00A3E0]/30 relative overflow-hidden">
+    <footer className="bg-[#041626] text-[#858078] py-12 sm:py-16 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 border-t border-[#00A3E0]/30 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 pb-12 border-b border-white/10">
           <div className="col-span-2 lg:col-span-2">
@@ -54,6 +54,11 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
               <li>
                 <button onClick={() => navigateTo('home', 'about')} className="text-white/80 hover:text-[#00A3E0] transition-colors text-left">
                   About Us
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigateTo('careers')} className="text-[#00A3E0] font-semibold hover:underline transition-colors text-left">
+                  Careers &amp; Placements
                 </button>
               </li>
               <li>

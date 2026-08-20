@@ -303,7 +303,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
               }
             ]}
             autoRotate={true}
-            rotateInterval={4500}
+            rotateInterval={2400}
             cardHeight={480}
           />
         </div>
@@ -1064,7 +1064,9 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-white">Phone</h4>
-                    <p className="text-xs sm:text-sm text-white/80 font-medium">+ 02080044421</p>
+                    <a href="tel:+442080044421" className="text-xs sm:text-sm text-white/80 font-medium hover:text-[#00A3E0] transition-colors">
+                      +44 (0)20 8004 4421
+                    </a>
                   </div>
                 </div>
 
@@ -1086,8 +1088,8 @@ export const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-white">Business Hours</h4>
-                    <p className="text-xs sm:text-sm text-white/80">Mon – Sat: 9:00 am – 5:00 pm</p>
-                    <p className="text-xs text-[#00A3E0] font-semibold mt-0.5">Sunday: CLOSED</p>
+                    <p className="text-xs sm:text-sm text-white/80">Mon – Fri: 9:00 am – 5:00 pm</p>
+                    <p className="text-xs text-[#00A3E0] font-semibold mt-0.5">Saturday &amp; Sunday: CLOSED</p>
                   </div>
                 </div>
               </div>

@@ -40,8 +40,11 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
             >
               <Logo className="h-20 sm:h-24 md:h-28 w-auto object-contain drop-shadow-md" />
             </button>
-            <p className="text-xs sm:text-sm leading-relaxed text-white/70 max-w-sm mb-6">
+            <p className="text-xs sm:text-sm leading-relaxed text-white/70 max-w-sm mb-3">
               Connecting technology, business and opportunity globally. A UK incorporated enterprise operating across technology, telecommunications, procurement, and B2B solutions since 2013.
+            </p>
+            <p className="text-xs text-[#00A3E0] font-semibold mb-6">
+              Tel: <a href="tel:+442080044421" className="text-white/90 hover:text-[#00A3E0] hover:underline transition-colors">+44 (0)20 8004 4421</a>
             </p>
             <p className="text-[11px] sm:text-xs text-white/50">
               © {new Date().getFullYear()} Regenerate Global Limited. All rights reserved.

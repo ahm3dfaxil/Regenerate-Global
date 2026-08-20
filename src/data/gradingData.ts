@@ -5,43 +5,43 @@ export const DEVICE_GRADES: DeviceGrade[] = [
     id: 'brand-new',
     grade: 'Brand New',
     badge: 'Factory Sealed',
-    description: "Factory-sealed with original packaging, standard accessories and 12–24 months manufacturer's warranty. Perfectly unused and pristine condition.",
-    warranty: '12–24 Months Warranty'
+    description: "Factory-sealed with original packaging, standard accessories and 1-year manufacturer's warranty. Perfectly unused and pristine condition.",
+    warranty: '1 Year Warranty'
   },
   {
     id: 'grade-a-plus-mfr',
     grade: 'Grade A+',
     badge: 'Manufacturer Prepared',
-    description: 'Fully operational, manufacturer-prepared devices backed by original warranty, guaranteed for immediate use.',
-    warranty: 'Original Warranty'
+    description: 'Fully operational, manufacturer-prepared devices backed by a 14–28 days warranty, guaranteed for immediate use.',
+    warranty: '14–28 Days Warranty'
   },
   {
     id: 'grade-a',
     grade: 'Grade A',
     badge: 'Mint Condition',
-    description: 'Lightly used in mint condition with minimal wear, fully operational, briefly used, and backed by a 3-month warranty.',
-    warranty: '3-Month Warranty'
+    description: 'Lightly used in mint condition with minimal wear, fully operational, briefly used, and backed by a 14–28 days warranty.',
+    warranty: '14–28 Days Warranty'
   },
   {
     id: 'grade-b',
     grade: 'Grade B',
     badge: 'Great Condition',
-    description: 'Devices in great condition, minimal cosmetic wear, fully functional and reliable, perfect for everyday use with a 3-month warranty.',
-    warranty: '3-Month Warranty'
+    description: 'Devices in great condition, minimal cosmetic wear, fully functional and reliable, perfect for everyday use with a 14–28 days warranty.',
+    warranty: '14–28 Days Warranty'
   },
   {
     id: 'grade-c',
     grade: 'Grade C',
     badge: 'Average Condition',
-    description: 'Devices in average condition, showing moderate wear, remain fully functional and dependable with a 3-month warranty.',
-    warranty: '3-Month Warranty'
+    description: 'Devices in average condition, showing moderate wear, remain fully functional and dependable with a 14–28 days warranty.',
+    warranty: '14–28 Days Warranty'
   },
   {
-    id: 'grade-a-plus-var',
-    grade: 'Grade A+',
-    badge: 'Grade Variant',
-    description: 'Devices in average condition, showing moderate wear, remain fully functional and dependable with a 3-month warranty.',
-    warranty: '3-Month Warranty'
+    id: 'refurbished',
+    grade: 'Refurbished',
+    badge: 'Fully Renewed',
+    description: 'Expertly reconditioned devices with certified original parts, 100% diagnostic verification, and backed by a 14–28 days warranty.',
+    warranty: '14–28 Days Warranty'
   }
 ];
 

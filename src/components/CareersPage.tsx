@@ -156,11 +156,11 @@ ${applicantMessage}`;
       desc: 'Manage listing optimization, marketplace inventory performance, and digital storefront growth across global B2B and retail channels.'
     },
     {
-      title: 'Operations & Supply Chain Assistant',
-      department: 'Operations & Logistics',
-      location: 'UK HQ',
+      title: 'UK and Europe Account Manager',
+      department: 'Sales & Commercial',
+      location: 'UK HQ & Europe',
       type: 'Full-time',
-      desc: 'Coordinate warehouse intake, inventory grading logistics, dispatch scheduling, and international cargo tracking.'
+      desc: 'Manage key enterprise accounts, drive commercial client partnerships, and expand B2B technology wholesale distribution across UK and European markets.'
     },
     {
       title: 'University Placement & Commercial Intern',

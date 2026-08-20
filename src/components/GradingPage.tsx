@@ -73,12 +73,13 @@ export const GradingPage: React.FC<GradingPageProps> = ({ setActivePage }) => {
 
           <div className="w-full overflow-hidden py-2 sm:py-4">
             <AngledSlider
-              speed={12}
+              speed={11}
               angle={18}
               containerHeight="430px"
               cardWidth="340px"
               gap="32px"
               hoverScale={1.08}
+              showControls={true}
               className="bg-white"
               childrenNodes={DEVICE_GRADES.map((item, idx) => (
                 <div
